@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+    	http://www.springframework.org/schema/beans/spring-beans.xsd
+    	http://www.springframework.org/schema/context
+    	http://www.springframework.org/schema/context/spring-context.xsd
+    	http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- Тэг component-scan сканирует на бины с базовой директории -->
+    <context:component-scan base-package="ru.spring.example"/>
+
+    <!-- Данный тег включает необходимые аннотации для Spring-MVC приложения -->
+    <mvc:annotation-driven/>
+
+    <!-- Три бина ниже нужны для работы шаблонизатора thymeleaf -->
+    <!-- Просто скопировал-вставил -->
+    <bean id="templateResolver" class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
+        <!-- Данный параметр отвечает за то где хранятся шаблоны приложения. -->
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <!-- данный параметр отвечает за то, какой формат имеют файлы представления (шаблоны) -->
+        <property name="suffix" value=".html"/>
+    </bean>
+
+    <bean id="templateEngine" class="org.thymeleaf.spring5.SpringTemplateEngine">
+        <property name="templateResolver" ref="templateResolver"/>
+        <property name="enableSpringELCompiler" value="true"/>
+    </bean>
+
+    <bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
+        <property name="templateEngine" ref="templateEngine"/>
+        <property name="order" value="1"/>
+        <property name="viewNames" value="*"/>
+    </bean>
+</beans>

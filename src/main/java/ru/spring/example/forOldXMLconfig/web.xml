@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         id="WebApp_ID" version="3.1">
+
+  <display-name>spring-mvc-app1</display-name>
+
+  <absolute-ordering/>
+
+  <!-- Здесь с помощью тега servlet мы создаем DispatcherServlet  -->
+  <servlet>
+    <!-- имя диспатчера -->
+    <servlet-name>dispatcher</servlet-name>
+    <!-- класс для диспатчера из спринг фреймворка-->
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <!-- при создании диспатчера нужно указать, в качестве параметра путь до файла где находится спринг конфиг -->
+      <!-- название параметра -->
+      <param-name>contextConfigLocation</param-name>
+      <!-- путь до конфиг файла -->
+      <param-value>/ru/spring/example/forOldXMLconfig/applicationContextMVC.xml/applicationContextMVC.xml</param-value>
+    </init-param>
+    <!-- указывает что этот сервлет должен в первую очередь загружатся на сервер  -->
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <!-- С помощью тега servlet-mapping, мы обращаемся к DispatcherServlet и говорим что любой URL "/" -->
+  <!-- "/" - слеш означает любой URL. -->
+  <!-- Любой URL должен перенаправлятся на наш DispatcherServlet -->
+  <servlet-mapping>
+    <servlet-name>dispatcher</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+</web-app>

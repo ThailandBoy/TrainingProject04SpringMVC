@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>Hello Page!</p>
+    <a href="/giga/goodByePage">GoodByePage link!</a>
+    <a href="/exit">Link to exit page!</a>
+
+    <!-- это аттрибут thymeleaf, который позволит нам вставить текст в этот тег "р" -->
+    <!-- Здесь идет обращение к ключу "message", который добавили аттрибутом в модель как параметр метода -->
+    <!-- добавление значения, мы осуществляем синтаксисом ниже. -->
+    <p th:text="${message}"></p>
+
+</body>
+</html>
